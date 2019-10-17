@@ -1,0 +1,431 @@
+/* Modern and clean custom Firefox CSS. Messy as hell. */
+
+/*@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace whatever url("http://www.w3.org/1999/xhtml");
+@-moz-document url("chrome://browser/content/browser.xul") {*/
+
+/* Root modifications.*/
+:root {
+    --tabs-border: transparent !important;
+    /* active tab left & right borders - not working in 58?*/
+    --toolbox-border-bottom-color: transparent !important;
+    /* 1px line under background tabs */
+    --chrome-nav-bar-controls-border-color: transparent !important;
+    /* border around url bar */
+    --tab-min-height: 30px !important;
+    /* tab height */
+    
+}
+
+
+:root:-moz-lwtheme {
+    --toolbox-border-bottom-color: rgba(0,0,0,0) !important; 
+}
+
+
+/* Remove separator visible in urlbar between reader mode icon and pocket icon. */
+:root #pageActionSeparator {
+    height: 24px;
+    opacity: 0 !important;
+    margin-left: -1px !important;
+    margin-right: 0px !important;
+}
+
+
+/*:root[uidensity="compact"] {
+    --tab-min-height: 3px;
+}*/
+
+
+/* Resize tab bar buttons - useful maybe? */
+/*:-moz-any(.tabs-newtab-button,#new-tab-button,#alltabs-button) .toolbarbutton-icon{
+    transform: scale(0.5, 0.5) !important;
+    margin-top:1px !important;
+}*/
+
+
+/* Custom nav-bar. */
+#nav-bar {
+    /*box-shadow:0px -10px 20px 0px rgba(0, 0, 0, 0.05) !important;*/
+    box-shadow:0px 1px 7px -5px rgba(0, 0, 0, 0.4) !important;
+    border: none !important;
+    padding:0px 8px !important;
+    background: rgb(249, 249, 246) !important;
+    margin-bottom: -1px !important;
+}
+
+/*#nav-bar::after {
+    box-shadow:0px -10px 20px 0px rgba(0, 0, 0, 0.4) !important;
+}*/
+
+#navigator-toolbox::after {
+    border-bottom:2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Bookmark toolbar autohide. */
+#nav-bar ~ #PersonalToolbar:not([customizing]) {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  position: fixed !important;
+  height: 30px !important;
+  padding: 5px 8px 10px !important;
+  /*border-right: 1px transparent !important;
+  border-left: 1px transparent !important;
+  border-top: 0px transparent!important;
+  border-bottom: 1px rgba(0,0,0,0) !important;*/
+  box-shadow: 0px 1px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  transform: translateY(-100%);
+  transition: transform 0.3s !important;
+}
+
+#navigator-toolbox:hover >
+#nav-bar ~ #PersonalToolbar:not([customizing]) {
+  transform: translateY(0);
+}
+
+#toolbar-menubar:not([inactive="true"]) ~
+#nav-bar ~ #PersonalToolbar:not([customizing]) {
+  transform: translateY(0);
+}
+
+#nav-bar, #TabsToolbar{
+    z-index: 1;
+}
+
+
+/* Custom bookmark toolbar button. */
+/*#bookmarks-menu-button {
+    color: rgba(0, 0, 0, 1) !important;
+    list-style-image: url('bookmarks.svg') !important;
+}*/
+
+
+/* Animated (fade in/out) back/forward buttons. Visible only when needed. Work in progress. */
+/*
+:hover>#forward-button,#back-button:not([customizing]) {
+    color: rgba(0, 0, 0, 1) !important;
+    transition: 0.3s !important;
+}
+
+#back-button[disabled="true"] {
+    visibility: collapse !important;
+    color: rgba(0, 0, 0, 0) !important;;
+    transform: translateA(-100%);
+    transition: transform 0.3s !important;
+}
+
+:hover>#back-button,#forward-button:not([customizing]) {
+    color: rgba(0, 0, 0, 1) !important;
+    transition: 0.3s !important;
+}
+
+#forward-button[disabled="true"] {
+    visibility: collapse !important;
+    color: rgba(0, 0, 0, 0) !important;
+    transform: translateA(-100%);
+    transition: transform 0.3s !important;
+}
+
+:hover>#forward-button:not([customizing]) {
+    color: rgba(0, 0, 0, 1) !important;
+    transition: 0.3s !important;;
+}
+*/
+
+
+/* Unanimated back/forward buttons. Visible only when needed. */
+#back-button[disabled="true"] {
+    display: none !important;
+}
+
+#forward-button[disabled="true"] {
+    display: none !important;
+}
+
+
+/* Urlbar moving sideways when back/forward buttons appear. Work in progress. */
+
+
+/* Panel buttons on the right side of toolbar. */
+#PanelUI-button,
+#customization-panel-container,
+#customization-panelWrapper .panel-arrow {
+    -moz-box-ordinal-group: 1 !important; /* 1 for button located on the right of toolbar, 0 to place it on the left of toolbar */
+    margin-right: -2px !important;
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+
+/* Animated fade-in of navigation panel buttons. */
+/*#PanelUI-menu-button,
+#nav-bar-overflow-button,
+#downloads-button {
+    transition: 0.15s !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    background: transparent !important;
+}
+
+#PanelUI-menu-button:hover,
+#nav-bar-overflow-button:hover,
+#downloads-button:hover {
+    transition: 0.15s !important;
+    color: rgba(0, 0, 0, 1) !important;
+    background: transparent !important;
+}*/
+
+
+#TabsToolbar .titlebar-placeholder[type="pre-tabs"] {
+    width:1.22em !important;
+    border-right: none !important;
+}
+
+.titlebar-placeholder[type="post-tabs"] {
+    width:8px !important;
+}
+
+.tab-content {
+    padding: 0 px !important;
+    padding-top: 0px !important;
+    padding-right: 9px !important;
+    padding-bottom: 0px !important;
+    padding-left: 9px !important;
+}
+
+.tab-line {
+    display: none !important;
+}
+
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+    border: none !important;
+    color: grey !important;
+    opacity: .2 !important;
+}
+
+.tabbrowser-tab[visuallyselected="true"] {
+    /*box-shadow: 0px 13px 20px -5px rgba(0, 0, 0, 0.3);*/
+    box-shadow: none !important;
+    margin-top: -1px !important;
+}
+.tab-background[selected="true"] {
+    background-attachment: none !important;
+    background-color: rgb(249, 249, 246) !important;
+    background-image: none !important;
+}
+
+.tabbrowser-arrowscrollbox > .arrowscrollbox-overflow-start-indicator:not([collapsed]),
+.tabbrowser-arrowscrollbox > .arrowscrollbox-overflow-end-indicator:not([collapsed]) {
+    opacity: .2 !important;
+}
+
+#tabbrowser-tabs {
+    z-index: 2 !important;
+    /*border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 20px !important;*/
+}
+
+/* URL bar. */
+#urlbar[focused="true"],
+#urlbar:hover, .searchbar-textbox:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+}
+
+#urlbar[selected="true"],
+.urlbar-history-dropmarker:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+    opacity: 0.6 !important;
+}
+
+#urlbar,
+.searchbar-textbox,
+#urlbar:hover,
+.searchbar-textbox:hover {
+    background: transparent !important;
+    height: 32px !important;
+    padding: 0 10px !important;
+    font-size: 1.1em !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    -moz-appearance: none;
+    margin: 4px 0px !important;
+    min-height: 24px !important;
+    cursor: default;
+}
+
+.urlbar-icon:hover,{
+    background: transparent !important;
+}
+
+.urlbar-history-dropmarker {
+    background: transparent !important;
+    opacity: 0 !important;
+}
+
+/*.urlbar-go-button {
+    background: transparent !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    transition: 0.15s !important;
+}
+
+.urlbar-go-button:hover {
+    background: transparent !important;
+    color: rgba(0, 0, 0, 1) !important;
+    transition: 0.15s !important;
+}*/
+
+/* Hide "go" button in the address bar */
+  
+.urlbar-go-button {
+    display:none !important;
+}
+
+/* Hide tab loading burst effect */
+  
+.tab-loading-burst {
+        display: none !important;
+}
+
+/* Pocket and bookmark icons. */
+#pocket-button-box,
+#page-action-buttons {
+    transition: 0.15s !important;
+    color: rgba(0, 0, 0, 0) !important;
+    background: transparent !important;
+}
+
+#pocket-button-box :hover,
+#page-action-buttons :hover {
+    transition: 0.15s !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    background: transparent !important;
+}
+
+
+/* Hidden icons and stuff */
+#identity-box,
+#pageActionButton,
+#PanelUI-menu-button,
+#identity-icon-labels {
+    display: none !important;
+    background: transparent !important;
+}
+
+#widget-overflow-list {
+    resize: inherit !important;    
+    min-width: calc(400px + 9em) !important;
+}
+    
+/*.panel-arrowcontent {
+    flex-direction: column!important;
+    display: flex!important;
+    resize: inherit !important;
+}*/
+    
+/* Findbar customization */
+.browserContainer > findbar {
+  -moz-box-ordinal-group: 0;
+  position: fixed !important;
+  right: 0.5em;
+  top: 6em;  
+  border: none !important;
+	border-radius: 7px !important;
+	padding: 5px !important;
+  box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.1) !important;
+  background: #f9f9f6 !important;
+    z-index: 1 !important;
+}
+.findbar-closebutton {
+  margin-inline-start: 0.5em !important;
+  vertical-align: middle !important;
+  margin-bottom: 0.5em !important;
+}
+input.findbar-find-fast {
+	height: 30px !important;
+	border-radius: 7px !important;
+	font-size: 14px !important;
+}
+.findbar-find-next, .findbar-find-previous, input.findbar-textbox {
+    margin-inline-start: 0.5em !important;
+    border: none !important;	
+}
+whatever|input.findbar-textbox {
+	border: none !important;
+	/*font-size: 14px !important;*/
+    background-color: var(--url-and-searchbar-background-color) !important;
+	color: var(--lwt-text-color) !important;
+	border-color: var(--backbutton-border-color) !important;
+
+	&[status="notfound"] {
+		background-color: #E74C3C !important;
+		color: white !important;
+	}
+}
+
+    
+/* Disables "phrase not found" text */
+.findbar-find-status,  .findbar-highlight {
+  display: none !important;
+}
+/* They're useful but I never use them: "Match Case" and "Whole Words" */
+.findbar-entire-word, .findbar-case-sensitive {
+	display: none !important;
+}
+/* Makes blank space for the "x of y matches" so the findbar doesn't change width when results are found  
+.findbar-find-fast.found-matches {
+  display: initial !important;
+  width: 100px !important;
+}*/
+
+}
+
+/* Make tab close buttons appear on tab hover, replacing the tab icon */
+.tabbrowser-tab .tab-close-button {
+  -moz-box-ordinal-group: 0 !important;
+  margin: 2px 6px 0px 0px !important;
+}
+
+.tabbrowser-tab .tab-close-button {
+  display: none !important;
+}
+
+.tabbrowser-tab:not([pinned="true"]):hover .tab-icon-image,
+.tabbrowser-tab:not([pinned="true"]):hover .tab-throbber {
+  display: none;
+}
+
+.tabbrowser-tab:not([pinned="true"]):hover .tab-close-button {
+  display: -moz-box !important;
+}
+/* Replace favicon on tabs with close button on hover 
+ 
+.tabbrowser-tab:not(:hover) .tab-close-button{ display:none; }
+.tabbrowser-tab:hover .tab-close-button{ display:none; }
+.tabbrowser-tab:not([pinned]):hover .tab-close-button{ display:block !important; }
+ 
+ 
+.tabbrowser-tab:not([pinned]):hover  .tab-icon-image {
+  display: none !important;
+}
+ 
+.tabbrowser-tab:hover  .tab-throbber,
+.tabbrowser-tab:hover  .tab-icon-image,
+.tabbrowser-tab:hover .tab-sharing-icon-overlay,
+.tabbrowser-tab:hover  .tab-icon-overlay,
+.tabbrowser-tab:hover  .tab-label-container,
+.tabbrowser-tab:hover  .tab-icon-sound {
+  -moz-box-ordinal-group: 2 !important;
+}
+ 
+.tabbrowser-tab .tab-close-button {
+  margin-left: -2px !important;
+  margin-right: 4px !important;
+}
+*/
