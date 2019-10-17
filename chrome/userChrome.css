@@ -396,7 +396,11 @@ whatever|input.findbar-textbox {
   display: none !important;
 }
 
-.tabbrowser-tab:not([pinned="true"]):hover .tab-icon-image,
+/*hide icons on tabs*/
+.tabbrowser-tab:not([pinned="true"]) .tab-icon-image {
+  display: none;
+}
+
 .tabbrowser-tab:not([pinned="true"]):hover .tab-throbber {
   display: none;
 }
